@@ -64,8 +64,8 @@ PropertiesDialog::PropertiesDialog(QWidget *parent)
             this, &PropertiesDialog::apply);
     connect(changeFontButton, &QPushButton::clicked,
             this, &PropertiesDialog::changeFontButton_clicked);
-    connect(chooseBackgroundImageButton, &QPushButton::clicked,
-            this, &PropertiesDialog::chooseBackgroundImageButton_clicked);
+    // connect(chooseBackgroundImageButton, &QPushButton::clicked,
+    //         this, &PropertiesDialog::chooseBackgroundImageButton_clicked);
 
     QStringList emulations = QTermWidget::availableKeyBindings();
     QStringList colorSchemes = QTermWidget::availableColorSchemes();

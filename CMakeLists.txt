@@ -9,7 +9,7 @@ set(STR_VERSION "0.8.0")
 set(LXQTBT_MINIMUM_VERSION "0.4.1")
 set(QTERMWIDGET_MINIMUM_VERSION "0.8.0")
 
-option(UPDATE_TRANSLATIONS "Update source translation translations/*.ts files" OFF)
+#option(UPDATE_TRANSLATIONS "Update source translation translations/*.ts files" OFF)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
@@ -48,7 +48,7 @@ add_definitions(
     -DQT_NO_FOREACH
 )
 
-set(EXE_NAME qterminal)
+set(EXE_NAME buckterm)
 
 set(QTERM_SRC
     src/main.cpp
@@ -117,23 +117,6 @@ set(QTERM_RCC_SRC
 qt5_wrap_ui( QTERM_UI ${QTERM_UI_SRC} )
 qt5_wrap_cpp( QTERM_MOC ${QTERM_MOC_SRC} )
 qt5_add_resources( QTERM_RCC ${QTERM_RCC_SRC} )
-lxqt_translate_ts(QTERM_QM
-    UPDATE_TRANSLATIONS
-        ${UPDATE_TRANSLATIONS}
-    SOURCES
-        ${QTERM_SRC}
-        ${QTERM_UI_SRC}
-        ${QTERM_MOC_SRC}
-    TRANSLATION_DIR "src/translations"
-    PULL_TRANSLATIONS
-        ${PULL_TRANSLATIONS}
-    CLEAN_TRANSLATIONS
-        ${CLEAN_TRANSLATIONS}
-    TRANSLATIONS_REPO
-        ${TRANSLATIONS_REPO}
-    TRANSLATIONS_REFSPEC
-        ${TRANSLATIONS_REFSPEC}
-)
 
 include_directories(
     "${PROJECT_SOURCE_DIR}"
@@ -169,8 +152,8 @@ if(APPLEBUNDLE)
     # use icon for app bundle to be visible in finder
     set(APPLE_BUNDLE_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/macosx/qterminal.icns")
 else()
-    set(TRANSLATIONS_DIR "${CMAKE_INSTALL_FULL_DATADIR}/qterminal/translations")
-    add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
+	#    set(TRANSLATIONS_DIR "${CMAKE_INSTALL_FULL_DATADIR}/qterminal/translations")
+	#    add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
 endif()
 
 add_executable(${EXE_NAME} ${GUI_TYPE}
@@ -240,5 +223,5 @@ else()
     install(CODE "message(STATUS \"Bundling (cp) keytab files from ${QTERMWIDGET_SHARE}/qtermwidget/\")")
     install(CODE "execute_process(COMMAND cp -r ${QTERMWIDGET_SHARE}/qtermwidget/ ${CMAKE_INSTALL_PREFIX}/${EXE_NAME}.app/Contents/Resources)")
 
-    install(FILES ${QTERM_QM} DESTINATION ${CMAKE_INSTALL_PREFIX}/${EXE_NAME}.app/Contents/translations)
+    #install(FILES ${QTERM_QM} DESTINATION ${CMAKE_INSTALL_PREFIX}/${EXE_NAME}.app/Contents/translations)
 endif()
