@@ -1,4 +1,8 @@
-# QTerminal
+# Buckterm
+
+## Fork of Qterminal
+
+Current description is just copied from the original qterminal repo.
 
 ## Overview
 
